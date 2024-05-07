@@ -402,4 +402,8 @@ Editor.prototype.pauseMidi = function(shouldPause) {
 		this.redrawMidi();
 };
 
+Editor.prototype.getTunes = function() {
+	return this.tunes;
+}
+
 module.exports = Editor;

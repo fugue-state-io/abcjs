@@ -398,6 +398,7 @@ module.exports = abcTablatures;
 /***/ (function(module) {
 
 var TimingCallbacks = function TimingCallbacks(target, params) {
+  // TODO: expose sequence of events and note timings to the client
   var self = this;
   if (!params) params = {};
   self.qpm = params.qpm ? parseInt(params.qpm, 10) : null;
@@ -626,6 +627,9 @@ var TimingCallbacks = function TimingCallbacks(target, params) {
   self.stop = function () {
     self.pause();
     self.reset();
+  };
+  self.getNoteTimings = function () {
+    return self.noteTimings;
   };
   self.setProgress = function (position, units) {
     // the effect of this function is to move startTime so that the callbacks happen correctly for the new seek.
@@ -2564,6 +2568,9 @@ Editor.prototype.millisecondsPerMeasure = function () {
 Editor.prototype.pauseMidi = function (shouldPause) {
   this.midiPause = shouldPause;
   if (!shouldPause) this.redrawMidi();
+};
+Editor.prototype.getTunes = function () {
+  return this.tunes;
 };
 module.exports = Editor;
 
